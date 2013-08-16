@@ -1,64 +1,60 @@
 ## Esivaatimukset
 
-1. Python - järjestelmässä pitää olla Python asennettuna. Jos käyttäjällä on 
-   ArcGIS asennettuna, löytyy järjestelmästä myös Python. Zupportia on testattu
-   Pythonin versioilla 2.6.x (ArcGIS 10.0) ja 2.7.x (ArcGIS 10.1).
+### Python
+
+jÃ¤rjestelmÃ¤ssÃ¤ pitÃ¤Ã¤ olla Python asennettuna. Jos kÃ¤yttÃ¤jÃ¤llÃ¤ on ArcGIS asennettuna, lÃ¶ytyy jÃ¤rjestelmÃ¤stÃ¤ myÃ¶s Python. Zupportia on testattu Pythonin versioilla 2.6.x (ArcGIS 10.0) ja 2.7.x (ArcGIS 10.1).
    
-   Oletusarvoisesti Python-tulkkia (python.exe) ei ole lisätty käyttäjän 
-   ohjelmapolkuun (ympäristömuuttuja PATH), joten Windows ei tunnista 
-   Python-tulkin kutsua komentoriviltä. Lisää siis Python ohjelmapolkuun:
+Oletusarvoisesti Python-tulkkia (python.exe) ei ole lisÃ¤tty kÃ¤yttÃ¤jÃ¤n ohjelmapolkuun (ympÃ¤ristÃ¶muuttuja PATH), joten Windows ei tunnista Python-tulkin kutsua komentoriviltÃ¤. LisÃ¤Ã¤ siis Python ohjelmapolkuun:
    
-   1. "Start menu" -> "Control panel" -> "System and security" -> "System"
-      -> "Advanced system settings" -> "Advanced"-välilehti 
-      -> "Environment Variables" -> "System Variables"
-   2. Etsi listasta ympäristömuuttuja "Path", aktivoi se ja paina "Edit..."
-   3. Lisää kohtaan "Variable value" polku
+1. "Start menu" -> "Control panel" -> "System and security" -> "System" -> "Advanced system settings" -> "Advanced"-vÃ¤lilehti 
+-> "Environment Variables" -> "System Variables"
+2. Etsi listasta ympÃ¤ristÃ¶muuttuja "Path", aktivoi se ja paina "Edit..."
+3. LisÃ¤Ã¤ kohtaan "Variable value" polku
    
-   		"C:\Python26\ArcGIS10.0" (ArcGIS 10.0)
+"C:\Python26\ArcGIS10.0" (ArcGIS 10.0)
    		
-   		tai
+tai
 
-		"C:\Python27\ArcGIS10.1" (ArcGIS 10.1)
+"C:\Python27\ArcGIS10.1" (ArcGIS 10.1)
 		
-   4. Paina "OK" ja sulje kaikki ikkunat
-   5. Testaa avaamalla komentorivi-ikkuna (paina win + r ja kirjoita 
-      suoriteikkunaan "cmd")
-   6. Kirjoita komentoriville "python". Jos tulkki käynnistyy, kaikki meni 
-   	  hyvin.
+4. Paina "OK" ja sulje kaikki ikkunat
+5. Testaa avaamalla komentorivi-ikkuna (paina win + r ja kirjoita suoriteikkunaan "cmd")
+6. Kirjoita komentoriville "python". Jos tulkki kÃ¤ynnistyy, kaikki meni hyvin.
 
-## Kehitysversio
+## LÃ¤hdekoodin hakeminen
 
-### Asennus
+### Kehitysversio
 
 1. Asenna Tortoisehg (http://tortoisehg.bitbucket.org/)
 
-2. Navigoi kansioon, johon Zuppportin lähdekoodi ladataan (esim. C:\dev\Zupport)
+2. Navigoi kansioon, johon Zuppportin lÃ¤hdekoodi ladataan (esim. C:\dev\Zupport)
 
-3. Klikkaa kansion sisällä hiiren oikeaa nappia ja valitse
+3. Klikkaa kansion sisÃ¤llÃ¤ hiiren oikeaa nappia ja valitse
 
 	"TortoiseHg" -> "Clone..."
 	
-4. Laita kennttään "Source" seuraava osoite:
+4. Laita kennttÃ¤Ã¤n "Source" seuraava osoite:
 
     http://hg.assembla.com/zupport
     
 5. Paina nappulaa "Clone"
 
-6. Zupportin asennuskansiossa, tuplaklikkaa tiedostoa "install.bat". Tämä ajaa
-   asennusskriptin, joka asentaa sekä Zupportin riippuvuudet että itse 
-   Zupportin. (HUOM! jotta tämä toimisi, on Python-tulkin löydyttävä 
-   ohjelmapolusta, kts. "Esivaatimukset")
-   
-7. Asennusskpripti tallentaa kaikki viestit loki-tiedostoon "install_log.txt",
-   tarkista sieltä, että kaikki meni hyvin.
- 
-8. Voit testata asennuksen onnistumista käynnistämällä komentorivin (kts. 
-   "Esivaatimukset" yllä) -> "python" -> "import zupport". Jos virheilmoituksia
-   ei näy, kaikki meni hyvin.
- 
-### Työkalupakki
-   
-9. Avaa ArcMap
+### Julkaisuversio
 
-10. "ArcToolbox" -> "Add Toolbox" ja navigoi Zupportin latauskansioon (kts. 
-    kohta 2) -> kansio "thirdparty" -> "toolboxes" -> "Zupport.tbx"
+1. Lataa lÃ¤hdekoodi [zip-pakettina](https://github.com/cbig/zupport/archive/master.zip).
+
+2. Pura zip-paketti haluamaasi paikkaan.
+
+## Asennus
+
+1. Mene lÃ¤hdekoodikansioosn ja tuplaklikkaa tiedostoa "install.bat". TÃ¤mÃ¤ ajaa asennusskriptin, joka asentaa sekÃ¤ Zupportin riippuvuudet ettÃ¤ itse Zupportin. (HUOM! jotta tÃ¤mÃ¤ toimisi, on Python-tulkin lÃ¶ydyttÃ¤vÃ¤ ohjelmapolusta, kts. "Esivaatimukset")
+   
+2. Asennusskpripti tallentaa kaikki viestit loki-tiedostoon "install_log.txt", tarkista sieltÃ¤, ett? kaikki meni hyvin.
+ 
+3. Voit testata asennuksen onnistumista kÃ¤ynnistÃ¤mÃ¤llÃ¤ komentorivin (kts. "Esivaatimukset" yllÃ¤) -> "python" -> "import zupport". Jos virheilmoituksia ei nÃ¤y, kaikki meni hyvin.
+ 
+### TyÃ¶kalupakki
+   
+1. Avaa ArcMap
+
+2. "ArcToolbox" -> "Add Toolbox" ja navigoi Zupportin latauskansioon (kts. kohta 2) -> kansio "thirdparty" -> "toolboxes" -> "Zupport.tbx"
