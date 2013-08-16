@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/plugins/QGISZupport">
+    <file>icon.png</file>
+    <file>icon.svg</file>
+  </qresource>
+</RCC>

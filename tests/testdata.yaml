@@ -1,0 +1,46 @@
+---
+TestTool: 
+- name: 'input_workspace'
+  required: True
+  tip: 'Path to input workspace'
+  value: ''
+                                      
+- name: 'output_workspace'
+  required: True
+  tip: 'Path to output workspace'
+  value: ''
+         
+- name: 'cell_factors'
+  required: True
+  tip: 'List of cell factors (;-separated) to be used'
+  value: !!seq []
+  
+- name: 'nodata_mode'
+  required: True
+  tip: 'Should NoData be preserved'
+  value: True
+  
+- name: 'extent'
+  required: False
+  tip: 'Snap output extent to a specific extent'
+  value: ''
+  
+- name: 'mask'
+  required: False
+  tip: 'Mask output according to another feature/raster'
+  value: ''
+           
+- name: 'include'
+  required: False
+  tip: 'Include only rasters in the list'
+  value: !!seq []
+                                      
+- name: 'raster_type'
+  required: False
+  tip: 'Output raster type'
+  value: 'ERDAS IMAGINE'
+                                     
+- name: 'debug'
+  required: True
+  tip: 'Determines whether debugging is enabled'
+  value: False

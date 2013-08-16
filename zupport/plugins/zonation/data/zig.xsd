@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.w3schools.com" xmlns="http://www.w3schools.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="zig_inputset">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="1" name="creator" type="xs:string"/>
+				<xs:element maxOccurs="1" name="created_date" type="xs:date"/>
+				<xs:element maxOccurs="unbounded" name="modified_date" type="xs:date"/>
+				<xs:element maxOccurs="unbounded" name="feature">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="1" name="ID" type="xs:integer"/>
+							<xs:element maxOccurs="1" name="creator" type="xs:string"/>
+							<xs:element maxOccurs="1" name="created_date" type="xs:date"/>
+							<xs:element maxOccurs="unbounded" name="modified_date" type="xs:date"/>
+							<xs:element default="1.0" maxOccurs="1" name="weight" type="xs:decimal"/>
+							<xs:element maxOccurs="1" name="alpha" type="xs:decimal"/>
+							<xs:element maxOccurs="1" name="BQP" type="xs:integer"/>
+							<xs:element maxOccurs="1" name="BQP_buffer" type="xs:integer"/>
+							<xs:element maxOccurs="1" name="cell_removal" type="xs:decimal"/>
+							<xs:element maxOccurs="1" name="spp_file" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

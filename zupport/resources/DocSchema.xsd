@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="docs" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="docs">
+
+    
+
+    
+
+
+    <xsd:element name="Documentation" type="DocType"></xsd:element>
+
+
+    <xsd:complexType name="DocType">
+    	<xsd:sequence>
+    		<xsd:element name="Dataset" minOccurs="1" maxOccurs="1">
+    			<xsd:complexType>
+    				<xsd:sequence>
+                        <xsd:element name="Name" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                        <xsd:element name="Administrator" type="xsd:string" minOccurs="0" maxOccurs="1">
+    		</xsd:element>
+                        <xsd:element name="Updated" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
+    		</xsd:element>
+                        <xsd:element name="Publicity" minOccurs="0" maxOccurs="1">
+    			<xsd:simpleType>
+    				<xsd:restriction base="xsd:string">
+    					<xsd:enumeration value="Julkinen"></xsd:enumeration>
+    					<xsd:enumeration value="Puolijulkinen"></xsd:enumeration>
+    					<xsd:enumeration value="Ei-julkinen"></xsd:enumeration>
+    				</xsd:restriction>
+    			</xsd:simpleType>
+    		</xsd:element>
+                        <xsd:element name="PlannedUsage" type="xsd:string" minOccurs="0" maxOccurs="1">
+    		</xsd:element>
+                        <xsd:element name="Characteristics" type="xsd:string" minOccurs="0" maxOccurs="1">
+    		</xsd:element>
+                        <xsd:element name="AnalysisUsage" type="xsd:string" minOccurs="0" maxOccurs="1">
+    		</xsd:element>
+                        <xsd:element name="Description" type="xsd:string" minOccurs="0" maxOccurs="1">
+    		</xsd:element>
+                    </xsd:sequence>
+    			</xsd:complexType>
+    		</xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

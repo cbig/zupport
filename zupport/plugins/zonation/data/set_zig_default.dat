@@ -1,0 +1,32 @@
+[Settings]
+initial removal percent = 0.0
+use boundary quality penalty = 0
+BQP profiles file = HV_prof_orig.txt
+BQP mode = 2
+BLP = 0.0
+edge removal = 0
+removal rule = 1
+use cost = 0
+cost file = fake_cost_map.asc
+use mask = 0
+mask file = test_mask.asc
+warp factor = 200
+logit space = 0
+add edge points = 0
+z = 0.25
+annotate name = 1
+resample species = 0
+use SSI = 1
+SSI file name = SSI_list.txt
+use interactions = 0
+interaction file = interact.spp
+use condition layer = 0
+condition file = cond_layers.txt
+use groups = 1
+groups file = HV_grps.txt
+memory save mode = 0
+
+[Info-gap settings]
+Info-gap proportional = 0
+use info-gap weights = 1
+Info-gap weights file = weights.spp

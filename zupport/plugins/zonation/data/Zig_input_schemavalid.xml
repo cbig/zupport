@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zig_inputset xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.w3schools.com zig.xsd">
+ 	<creator>Joona Lehtomaki</creator>
+ 	<created_date>2008-01-26</created_date>
+ 	<modified_date>2008-02-04</modified_date>
+ 	<feature>
+ 		<ID>1</ID>
+ 			<meta>
+	      		<creator>Joona Lehtomaki</creator>
+	      		<created_date>2008-01-26</created_date>
+	      		<modified_date>2008-01-27 </modified_date>
+	      	</meta>
+	      	<data>
+	      		<name>FINIBA</name>
+				<manager>ESA</manager>
+				<update>31-04-2009</update>
+				<publicity>public</publicity>
+				<usage>Map important bird waters</usage>
+				<analysis>Used as species input</analysis>
+				<description>Blaablaa</description>
+	      	</data>
+	      	<process>
+	      		<gis>
+	      			<operation step=1>Convert</operation>
+	      			<operation step=2>Aggregate</operation>
+	      			<operation step=3>ToAscii</operation>
+	      		</gis>
+		      	<zonation>
+		      		<weight>1.0</weight>
+		      		<alpha>0.001</alpha>
+		      		<BQP>10</BQP>
+		      		<BQP_buffer>5</BQP_buffer>
+		      		<cell_removal>1</cell_removal>
+		      		<spp_file>test_set.spp</spp_file>
+	    		</zonation>
+    		</process>
+    		<history>
+
+    		</history>
+    	</feature>
+    	<feature>
+      		<ID>2</ID>
+      		<creator>Joona Lehtomaki</creator>
+      		<created_date>2008-01-26</created_date>
+      		<modified_date>2008-01-27 </modified_date>
+      		<weight>1.2</weight>
+      		<alpha>0.005</alpha>
+      		<BQP>8</BQP>
+      		<BQP_buffer>6</BQP_buffer>
+      		<cell_removal>1.5</cell_removal>
+      		<spp_file>test_set2.spp</spp_file>
+    	</feature>
+</zig_inputset>

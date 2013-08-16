@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="icons" >
+    <file alias="Edit" >icons/edit.png</file>
+    <file alias="About" >icons/help_about.png</file>
+    <file alias="Save" >icons/save_all.png</file>
+    <file alias="First" >icons/2leftarrow.png</file>
+    <file alias="Last" >icons/2rightarrow.png</file>
+    <file alias="Next" >icons/1rightarrow.png</file>
+    <file alias="Previous" >icons/1leftarrow.png</file>
+    <file alias="Open" >icons/folder_open.png</file>
+    <file alias="Quit" >icons/exit.png</file>
+  </qresource>
+</RCC>

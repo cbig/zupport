@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Documentation xmlns="docs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="docs ../resources/DocSchema.xsd ">
+  <Dataset>
+    <Name>Arvokkaat kallioalueet</Name>
+    <Administrator>SYKE</Administrator>
+    <Updated>2009-12-01T16:00:00</Updated>
+    <Publicity>Julkinen</Publicity>
+    <PlannedUsage>Päätöksenteon tukena maa-aineislain ja rakennuslain mukaisia ratkaisuja tehtäessä</PlannedUsage>
+    <Characteristics>Ei juridista asemaa</Characteristics>
+    <AnalysisUsage>arvoa kuvaava ja/tai rakennepiirteitä sisältävä</AnalysisUsage>
+    <Description>Aineistolla on keskeinen merkityksensä myös maankäytön suunnittelussa, mutta sillä ei ole kuitenkaan juridista asemaa.</Description>
+  </Dataset>
+</Documentation>

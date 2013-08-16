@@ -1,0 +1,52 @@
+---
+Aggregate:
+- name: 'input_workspace'
+  required: True
+  tip: 'Path to input workspace'
+  value: 'PATH'
+                                      
+- name: 'output_workspace'
+  required: True
+  tip: 'Path to output workspace'
+  value: 'PATH'
+         
+- name: 'cell_factor'
+  required: True
+  tip: 'Integer cell factor (multiplier) for the new resolution'
+  value: 2
+  
+- name: 'nodata_mode'
+  required: True
+  tip: 'Should NoData be preserved'
+  value: True
+  
+- name: 'extent'
+  required: False
+  tip: 'Snap output extent to a specific extent'
+  value: ''
+  
+- name: 'mask'
+  required: False
+  tip: 'Mask output according to another feature/raster'
+  value: 'PATH'
+           
+- name: 'include'
+  required: False
+  tip: 'Include only rasters in the list'
+  value: ''
+                                      
+- name: 'raster_type'
+  required: True
+  tip: 'Output raster type'
+  value: ['ERDAS IMAGINE', 'GeoTIFF']
+                                     
+- name: 'debug'
+  required: True
+  tip: 'Determines whether debugging is enabled'
+  value: True
+  
+- name: 'help'
+  required: True
+  tip: 'Tool help'
+  value: 'Tool for aggregating data to desired resolution while preserving true NoData values. Tool will create new subfolders into the output workspace according to  target resolution if they do not exist.'
+  

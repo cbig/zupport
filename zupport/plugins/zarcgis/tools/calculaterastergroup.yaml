@@ -1,0 +1,51 @@
+---
+CalculateRasterGroup:
+- name: 'input_workspace'
+  required: True
+  tip: 'Input workspace holding the rasters'
+  value: ''
+ 
+- name: 'wildcard'
+  required: False
+  tip: 'Wild card used to filter the input file names'
+  value: '.' 
+   
+- name: 'template'
+  required: True
+  tip: 'Regular expression used to define which rasters are grouped into a set'
+  value: '.'
+ 
+- name: 'grouptags'
+  required: True
+  tip: 'List identifying template tag(s) that is/are used as a basis for grouping '
+  value: '.'
+  
+- name: 'operator'
+  required: True
+  tip: 'String defining which raster algebra operation is applied to rasters'
+  value: ''
+                                 
+- name: 'output_workspace'
+  required: True
+  tip: 'Output workspace holding for the results'
+  value: ''
+  
+- name: 'reference_table'
+  required: True
+  tip: 'DataFrame object used for lookup'
+  value: '.'
+  
+- name: 'reference_fields'
+  required: True
+  tip: 'Tuple defining the field mapping in the dataframe'
+  value: '.'
+  
+- name: 'debug'
+  required: True
+  tip: 'Determines whether debugging is enabled'
+  value: False
+  
+- name: 'help'
+  required: True
+  tip: 'Tool help'
+  value: 'Foo'

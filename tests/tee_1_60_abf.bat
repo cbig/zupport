@@ -1,0 +1,1 @@
+call ..\zig2c.exe -r 1_60_abf\1_60_abf.dat 1_60_abf\1_60_abf.spp 1_60_abf\output\result_1_60_abf.txt 0 0 1 0 | wtee.exe logs\tee_1_run.log

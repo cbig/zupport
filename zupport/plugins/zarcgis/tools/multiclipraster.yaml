@@ -1,0 +1,26 @@
+---
+MultiClipRaster:
+- name: 'help'
+  required: True
+  tip: 'Tool help'
+  value: 'Tool for clipping several rasters in batch'
+ 
+- name: 'Rasters'
+  required: True
+  tip: 'List of rasters (;-separated) to be clipped'
+  value: ''
+                                      
+- name: 'Output_workspace'
+  required: True
+  tip: 'Path to output workspace'
+  value: ''
+                                      
+- name: 'Raster_type'
+  required: True
+  tip: ''
+  value: ''
+                                     
+- name: 'debug'
+  required: True
+  tip: 'Determines whether debugging is enabled'
+  value: False
