@@ -4,14 +4,13 @@
 
 """
 
-import copy
 import inspect
 import os
 import pkgutil
 import sys
 from types import IntType, StringType
 import yaml
-    
+
 from zope.interface import implements
 
 from zupport import registry
@@ -19,6 +18,7 @@ from zupport.interfaces import IPlugin, ITool
 from zupport.utilities import Singleton, USER_DATA_DIR
 from zupport.utilities.odict import OrderedDict
 from zupport.zlogging import Logger
+
 
 class ExtentContainer(object):
     """ Utility class for storing, reading and writing custom geographical
@@ -75,39 +75,39 @@ class ExtentContainer(object):
     def _get_resolution(self):
         return self._curres
 
-    resolution = property(_get_resolution, _set_resolution, None,"")
+    resolution = property(_get_resolution, _set_resolution, None, "")
+
 
 class Job(object):
-    
-    
+
     def __init__(self, service, batch, gui, *args, **kwargs):
         """ Using batch=True indicates that we will overide gp parameters
         manually.
         """
-        
+
         self.batch = batch
         self.logger = Logger('Zupport')
         self._predesessor = None
         self._successor = None
         self.service = service
-        
+
         self.tool = None
         # request_service returns a tuple (plugin_name, tool)
         plugin_name, tool = self.request_service(service)
-        
+
         if tool:
             self.tool = tool
             # If batch is True, then gpparams is False
             self.tool.update((not batch), gui, *args, **kwargs)
-            self.logger.debug('Setup service <%s> from plugin %s' % (service, 
-                                                                   plugin_name))
+            self.logger.debug('Setup service <%s> from plugin %s' %
+                              (service, plugin_name))
         else:
             self.logger.warning('Service <%s> not available' % service)
-    
+
     @property
     def parameters(self):
         return self.tool.parameters
-    
+
     def request_service(self, name):
         return registry.queryUtility(ITool, name)
 
@@ -132,17 +132,18 @@ class Job(object):
         if isinstance(value, Job):
             self.__successor = value
 
-    predesessor = property(_get_predesessor, _set_predesessor, None, 
+    predesessor = property(_get_predesessor, _set_predesessor, None,
                            "predesessor's docstring")
-    successor = property(_get_successor, _set_successor, None, 
+    successor = property(_get_successor, _set_successor, None,
                          "successor's docstring")
+
 
 class Manager(Singleton):
     ''' Manager class that can load and execute plugins in a specific order.
     '''
-    
+
     def __init__(self, parent=None):
-        
+
         self.logger = Logger('Zupport.Manager')
         if parent and parent.logger:
             self.logger.debugging = parent.logger.debugging
@@ -152,35 +153,37 @@ class Manager(Singleton):
         self._plugins = OrderedDict()
         try:
             import plugins
-            
+
             # Import all the plugin modules that do not raise ImportError
             for loader, module_name, is_pkg in  pkgutil.iter_modules(plugins.__path__):
                 try:
                     exec('from plugins import %s' % module_name)
                 except ImportError, e:
-                    self.logger.warning('Cannot load plugin: %s (%s)' % (module_name, e))
-            
+                    self.logger.warning('Cannot load plugin: %s (%s)' %
+                                        (module_name, e))
+
             # Load the initial plugins
             plugins_modules = inspect.getmembers(plugins, inspect.ismodule)
             plugins_path = os.path.abspath(os.path.dirname(plugins.__file__))
             for name, data in plugins_modules:
-                self.logger.debug('Loading plugin: %s (%s)' % (name, plugins_path))
+                self.logger.debug('Loading plugin: %s (%s)' %
+                                  (name, plugins_path))
                 self.load_plugin(name, plugins_path)
-        
+
         except ImportError, e:
             self.logger.exception('Cannot load plugin: %s' % str(e))
-        
+
         self.jobqueue = []
-            
+
     def add_job(self, job):
         self.jobqueue.append(job)
-    
+
     def get_plugin(self, name):
         if name in self._plugins.keys():
             return self._plugins[name]
         else:
             return None
-    
+
     def loaded_plugins(self):
         all_tools = registry.getUtilitiesForBy(ITool)
         plugins = []
@@ -188,9 +191,9 @@ class Manager(Singleton):
         for tool_name, data in all_tools.iteritems():
             plugins.append(data[0])
         return set(plugins)
-    
+
     def load_plugin(self, name, plugins_path):
-    
+
         try:
             if name in self.loaded_plugins():
                 self.logger.info('Plugin %s already loaded' % name)
@@ -200,11 +203,11 @@ class Manager(Singleton):
         except ImportError, e:
             self.logger.exception('Could not import plugin %s' % e)
             return 0
-        
+
         except ValueError, e:
-            self.logger.exception('%s Exiting...' % (e))    
+            self.logger.exception('%s Exiting...' % (e))
             return 0
-    
+
     def run_job(self, job):
         """ Run a single job.
         """
@@ -214,7 +217,7 @@ class Manager(Singleton):
             self.logger.info('Finished job %s successfully' % job.service)
         else:
             self.logger.info('Job %s did not finish successfully' % job.service)
-    
+
     def run_jobs(self):
         """ Run all jobs in the queue.
         FIXME: this is broken as a single tool instance exists in the registry
@@ -224,7 +227,7 @@ class Manager(Singleton):
         """
         for job in self.jobqueue:
             job.run()
-    
+
     def unload_plugin(self, toolname):
         if toolname in self.plugins.keys():
             del self.plugins[toolname]
@@ -232,32 +235,33 @@ class Manager(Singleton):
         else:
             self.logger.info('Tool not Loaded.')
 
+
 class Parameter(object):
     """ Utility class for holding parameter information.
-    
+
     Initially, instances have only 4 attributes:
-    
+
     1. name: name of the parameter (required)
     2. value: value of the parameter (required)
-    3. required: is the parameter required by whatever tool is using it 
+    3. required: is the parameter required by whatever tool is using it
        (optional: defaults to False)
     4. tip: short documentation on the parameter (optional: default to '')
-    
+
     These are defined in a class attribute 'attr_acceptable'
-    
+
     Class constructor accepts args, kwargs, or a single list or dictionary.
-    
+
     """
 
     attr_acceptable = ['name', 'value', 'required', 'tip']
 
     def __init__(self, *args, **kwargs):
-        
+
         self.name = None
         self.value = None
         self.required = None
         self.tip = None
-        
+
         # Parse input data
         if args:
             if type(args[0]) in (list, tuple):
@@ -268,20 +272,20 @@ class Parameter(object):
                 self._init_list(args)
         if kwargs:
             self._init_dict(kwargs)
-            
+
     def __setattr__(self, name, value):
         ''' Custom __setattr__ that controls the available attribute names. '''
         if name in Parameter.attr_acceptable:
             object.__setattr__(self, name, value)
         else:
             raise AttributeError('Name %s not valid for class attribute' % name)
-            
+
     def __str__(self):
         return 'Name: %s\nValue: %s\nRequired: %s\nTip: %s\n' % (self.name,
                                                                  self.value,
                                                                  self.required,
                                                                  self.tip)
-        
+
     def _init_list(self, data):
         ''' Parser method for list/tuple type input data.'''
         if len(data) < 2 or len(data) > 4:
@@ -296,20 +300,20 @@ must have at least 2 and max 4 values.' % type(self))
             else:
                 self.required = False
                 self.tip = ''
-        
+
     def _init_dict(self, data):
         ''' Parser method for dict type input data.'''
         try:
             self.name = data['name']
             self.value = data['value']
-        except KeyError, e:
+        except KeyError:
             raise KeyError('Single parameter of the type %s \
             must have dictionary values "name" and "value".' % type(self))
-        if data.has_key('required'):
+        if 'required' in data:
             self.required = data['required']
         else:
             self.required = False
-        if data.has_key('tip'):
+        if 'tip' in data:
             self.tip = data['tip']
         else:
             self.tip = ''
@@ -325,56 +329,57 @@ must have at least 2 and max 4 values.' % type(self))
         else:
             return label + ' (optional)'
 
+
 class ParameterList(object):
     """ Utility class for holding parameter information, objects are instances
     of Parameter class or its' subclasses.
-    
+
     Object Parameters only has one required parameter, name. Object
-    can be instantiated with (1) a list of suitable parameters in format 
-    
+    can be instantiated with (1) a list of suitable parameters in format
+
     [{'name': spam, 'value': 1, 'required': True, 'tip': '', ...}]
-    
+
     or (2) full blown guidata interface compatible dictionary in format
-    
+
     {'toolname': [{'name': spam, 'value': 1, 'required': True, 'tip': '', ...}]}
 
-    If no initial parameters are provided, a suitable yaml template 
-    for parameters can be provided in the form of absolute or relative path. 
+    If no initial parameters are provided, a suitable yaml template
+    for parameters can be provided in the form of absolute or relative path.
 
-    Class can be subclassed; in this case the subclass must re-implement the 
+    Class can be subclassed; in this case the subclass must re-implement the
     parse method in order to handle the provided parameters.
-    
+
     """
 
     def __init__(self, name, template=None, data=None):
         # Name the instance
         self._name = name
-        
+
         self._data = []
-        
+
         if template is not None:
             data = self.__read(template)
             self.templatepath = template
-                    
+
         self.parse(data)
-            
+
         self.index = 0
-        
+
     def __iter__(self):
         return self
-    
+
     def __len__(self):
         return len(self.data)
-    
+
     def __str__(self):
         return '\n'.join([str(parameter) for parameter in self.data])
-            
+
     def add(self, *args, **kwargs):
         self.data.append(Parameter(*args, **kwargs))
-    
+
     def missing(self):
         # TODO: should do parameter type specific checking
-        
+
         missing = []
         for parameter in self.data:
             if parameter.required and parameter.value == '':
@@ -383,15 +388,15 @@ class ParameterList(object):
             return missing
         else:
             return None
-    
+
     @property
     def name(self):
         return self._name
-    
+
     @property
     def data(self):
         return self._data
-        
+
     def get_parameter(self, token):
         if type(token) == str or type(token) == unicode:
             for parameter in self.data:
@@ -401,8 +406,8 @@ class ParameterList(object):
             return self.data[token]
         else:
             raise ValueError('Token type invalid for object Parameters: %s' % (
-                                type(token)))
-            
+                             type(token)))
+
     def get_parameter_value(self, token):
         if type(token) == str or type(token) == unicode:
             for parameter in self.data:
@@ -412,8 +417,8 @@ class ParameterList(object):
             return self.data[token].value
         else:
             raise ValueError('Token type invalid for object Parameters: %s' % (
-                                type(token)))
-        
+                             type(token)))
+
     def next(self):
         if self.index < len(self.data):
             self.index += 1
@@ -422,15 +427,15 @@ class ParameterList(object):
             # Enable re-iteration
             self.index = 0
             raise StopIteration()
-    
+
     def parse(self, data):
         ''' Method for parsing input data.
-        
+
         Data can be a single list / tuple / dictionary, or a nested structure.
         Method assumes homogeneity in nestedness, i.e. if the first element
         in the data structure is a list, the whole data structure is a list of
         lists.'''
-        
+
         if data is not None:
             # Check the first level data structure type
             if type(data) == list or type(data) == tuple:
@@ -444,23 +449,23 @@ class ParameterList(object):
                         self.add(data)
                         break
             if type(data) == dict:
-                # Data is a dictionary, must only have 0 or 1 keys which determines
-                # the name of the tool that the parameters are for
+                # Data is a dictionary, must only have 0 or 1 keys which
+                # determines the name of the tool that the parameters are for
                 assert len(data.keys()) > 1, 'Input data can only have one key.'
                 for element in data.values():
                         self.add(element)
-           
+
     @property
     def help(self):
         return self.get_parameter_value('help')
-                        
+
     @property
     def parameter_names(self):
         ''' Property method returns all the parameter names in self.'''
         return [parameter.name for parameter in self.data]
- 
+
     def __read(self, infile):
-        
+
         if not infile.endswith('.yaml'):
             infile = infile + '.yaml'
         if os.path.exists(infile):
@@ -469,16 +474,16 @@ class ParameterList(object):
                 # TODO: hack, there should be a way of comparing template name
                 # (key) and Parameters instance.name
                 return data.values()[0]
-            except (IOError, OSError), e:
+            except (IOError, OSError):
                 raise
         else:
             raise ValueError('Template path does not exits: %s' % infile)
-    
+
     def remove(self, name):
         for parameter in self.data:
             if parameter.name == name:
                 self.data.remove(parameter)
-                
+
     def set_parameter(self, token, object):
         if type(token) == str or type(token) == unicode:
             for parameter in self.data:
@@ -488,10 +493,10 @@ class ParameterList(object):
             self.data[token] = object
         else:
             raise ValueError('Token type invalid for object Parameters: %s' % (
-                                type(token)))
-    
+                             type(token)))
+
     def set_parameter_value(self, token, value):
-        
+
         if type(token) == str or type(token) == unicode:
             # Check if parameter name exists
             if token not in self.parameter_names:
@@ -503,7 +508,8 @@ class ParameterList(object):
             self.data[token].value = value
         else:
             raise ValueError('Token type invalid for object Parameters: %s' % (
-                                type(token)))
+                             type(token)))
+
 
 class ParameterError(Exception):
     """ Customized error class caused if parameters data structure is malformed.
@@ -522,31 +528,32 @@ class ParameterError(Exception):
     def __str__(self):
         return self.value + "\n" + str(self.parameters)
 
+
 class Plugin(object):
     """
     """
-    
+
     implements(IPlugin)
-    
+
     def __init__(self, name, package_path):
         self._name = name
         self._ready = False
         self.logger = Logger('Zupport.Plugin')
         self.logger.debugging = True
-        
+
         # package_path is the parent folder i.e. package folder for the s
-        # plugin -> it must be appended to the sys.path in order to import 
+        # plugin -> it must be appended to the sys.path in order to import
         # the plugin module
         if package_path not in sys.path:
             self.logger.debug('Inserting %s to sys.path' % package_path)
             sys.path.insert(0, package_path)
-        
+
         # Load the module
         try:
-            # module here is the same as the plugin module, it needs to 
+            # module here is the same as the plugin module, it needs to
             # imported only once
             self.logger.debug(name)
-            
+
             module = __import__(name)
             self.logger.debug(str(module))
             # Load initial tools
@@ -555,22 +562,21 @@ class Plugin(object):
             self.logger.debug('%s' % (module))
             if tool_modules:
                 for tool_name, tool_module in tool_modules:
-                    
+
                     self._load_tool(name=tool_name, module=tool_module)
-                
+
             else:
                 self.logger.warning('No tools available for plugin %s' % name)
             self._ready = True
-            
+
         except ImportError:
             self.logger.error('Could not import %s' % name)
-          
-        if self._ready:  
+
+        if self._ready:
             self.logger.info('Loaded plugin: %s' % name)
-                
-        
+
     def _load_tool(self, name, module):
-        
+
         # TODO: implement checking for ITool interface
         self.logger.debug('[%s] Loading tool' % name)
         path = os.path.abspath(os.path.dirname(module.__file__))
@@ -579,44 +585,43 @@ class Plugin(object):
             definition_file = os.path.join(path, name + '.yaml')
             if not os.path.exists(definition_file):
                 self.logger.error(('[%s] Could not find defintion ' +
-                'file %s') % (name, definition_file))
+                                  'file %s') % (name, definition_file))
                 return
             else:
-                self.logger.debug('[%s] Definition file:  %s' % (name, 
-                                                                definition_file))
-            
+                self.logger.debug('[%s] Definition file:  %s' %
+                                  (name, definition_file))
+
             parameters = ParameterList(name, definition_file)
-            
+
             tool = module.setup(parameters)
-           
+
             # Add the tool to registry
             if ITool.providedBy(tool):
-                registry.provideUtility(tool, ITool, name=tool.service, 
+                registry.provideUtility(tool, ITool, name=tool.service,
                                         providedby=self._name)
-                self.logger.debug('Added %s to registry' % name) 
+                self.logger.debug('Added %s to registry' % name)
             else:
                 self.logger.error(('Tool %s does not provide ITool interface' +
                                   ' and cannot be used') % name)
-            
+
         except ImportError, e:
             self.logger.exception('Could not import tool %s' % e)
-        
+
         except ValueError, e:
-            self.logger.exception('%s Exiting...' % (e))    
-        
+            self.logger.exception('%s Exiting...' % (e))
+
     def _unload_tool(self, tool):
         pass
-    
+
     def registered(self, tool):
         tools = self.registered_tools()
         if tool in [_tool[0] for _tool in tools]:
             return True
         else:
             return False
-        
+
     def registered_tools(self):
         return list(registry.getUtilitiesFor(ITool, providedby=self._name))
-
 
 
 class Project(object):
@@ -635,7 +640,7 @@ class Project(object):
         # Check the persistent configuration path
         self._configuration = {}
         self.config_dir = os.path.join(os.path.expanduser('~'), '.zupport',
-                                                                 'config')
+                                       'config')
         if os.path.isdir(self.config_dir):
             try:
                 self._configuration = self.load_configuration(self.config_dir,
@@ -661,21 +666,22 @@ class Project(object):
         # Try reading in the project file
         try:
             self._project = self.load_configuration(self.path, 'project.yaml')
-        except (IOError, OSError), e:
+        except (IOError, OSError):
             print "Couldn't read project info."
 
     def load_configuration(self, path, config_file):
         try:
             file = os.path.join(str(path), config_file)
             return yaml.safe_load(open(file))
-        except (IOError, OSError), e:
+        except (IOError, OSError):
             raise
 
     def save(self):
         stream = file(os.path.join(self.path, 'project.yaml'), 'w')
         yaml.dump(self.configuration, stream)
         stream.close()
-   
+
+
 class Result(object):
     '''Partial re-implementation of arcpy Result class
     '''
@@ -704,49 +710,49 @@ class Result(object):
         '''
         # Each message is a tuple (severity, message)
         self._messages = []
-        
+
     @property
     def inputCount(self):
         return self._inputCount
-    
+
     @property
     def maxSeverity(self):
         return self._maxSeverity
-    
+
     @property
     def messageCount(self):
         return self._messageCount
-    
+
     @property
     def outputCount(self):
         return self._outputCount
-    
+
     @property
     def resultID(self):
         return self._resultID
-   
+
     def addMessage(self, severity, msg):
         self._messages.append((severity, msg))
-   
-    def cancel(self):        
+
+    def cancel(self):
         '''Cancels an associated job'''
         raise NotImplementedError
-   
+
     def getInput(self, index):
         '''Returns a given input, either as a recordset or string.'''
         self.parent.get_parameter(index)
 
-    def getMessage(self, index):    
+    def getMessage(self, index):
         '''Returns a specific message.'''
         return self.messages[index]
-    
+
     def getMessages(self, severity):
         '''Returns messages.'''
         return_messages = []
         for message in self._messages:
             if message[0] == severity:
                 return_messages.append(message[1])
-        
+
     def getOutput(self, index):
         '''Returns a given output.
         '''
@@ -762,56 +768,56 @@ class Result(object):
             return None
         except KeyError:
             return None
-        
+
     def getSeverity(self, index):
         '''Returns the severity of a specific message.'''
         return self._messages[index][0]
-   
+
     def _getStatus(self):
         return self._status
-   
+
     def setOutput(self, index, value):
         self.output[index] = value
-        
+
     def _setStatus(self, status):
         if status in range(0, 11):
             self._status = status
         else:
             raise ValueError('Status values are [0, 10]')
-            
+
     status = property(_getStatus, _setStatus, None, '')
-     
+
+
 class ResultList(object):
-    
+
     def __init__(self):
         self._results = []
-        
+
     def add_result(self, result):
         self._results.append(result)
-        
+
     @property
     def results(self):
         return self._results
-        
+
     def save(self):
         # TODO: overlaps with logging functionality, sort it out
         txt_result_list = []
         for result in self.results:
             txt_result = []
             txt_result.append('Toolname: ' % result.toolname)
-            txt_result.append('Status: %s' % result.status) 
+            txt_result.append('Status: %s' % result.status)
             txt_result.append('Input count ' % result.inputCount)
             for parameter in result.parameters:
-                txt_result.append('>> %s: %s'% (parameter.name, 
-                                                parameter.value))
+                txt_result.append('>> %s: %s' % (parameter.name,
+                                                 parameter.value))
             txt_result.append('Output count: ' % result.outputCount)
             for i in range(0, result.outputCount):
                 txt_result.append('>> Output %s: %s' % (i, result.getOutput(i)))
-                
-            
             txt_result.append('\n')
             txt_result_list.append(txt_result)
-        
+
+
 class Tool(object):
     """
     """
@@ -833,65 +839,66 @@ class Tool(object):
         return self._backend
 
     def get_parameter(self, token):
-        """Return a parameter value defined by the *token* that can be an 
-        integer (index) or string (key). Returns :const:`None` if token is 
+        """Return a parameter value defined by the *token* that can be an
+        integer (index) or string (key). Returns :const:`None` if token is
         invalid."""
-        
+
         return self.parameters.get_parameter_value(token)
-    
+
     @property
     def parameters(self):
         return self._parameters
-
 
     def parameter_count(self):
         """Return the number of parameters in the tool object.
         """
         return len(self.parameters)
-            
+
     def update(self, *args, **kwargs):
-        """ Parse the provided *args and **kwargs into Parameters object 
+        """ Parse the provided *args and **kwargs into Parameters object
         (self.parameters).
         """
         try:
-            # Parameter values provided as args, check that they comply 
+            # Parameter values provided as args, check that they comply
             # to Parameters object (self.parameters) structure. 
-            # Parameter identity is defined by arg index, so it's 
-            # only implicit. 
+            # Parameter identity is defined by arg index, so it's
+            # only implicit.
             if len(self.parameters) < len(args):
                 raise ParameterError('Tool expects %s parameters, %s provided' %
                                      (len(self.parameters), len(args)))
             for i, arg in enumerate(args):
                 self.parameters.set_parameter_value(i, arg)
-            
-            # Parameter values provided as kwargs, check that they comply 
-            # to Parameters object (self.parameters) structure. 
-            # Parameter identity is defined by key word, so it's 
+
+            # Parameter values provided as kwargs, check that they comply
+            # to Parameters object (self.parameters) structure.
+            # Parameter identity is defined by key word, so it's
             # explicit. Keys not found in Parameters object are ignored.
             for key, value in kwargs.iteritems():
                 self.parameters.set_parameter_value(key, value)
-        
+
             # TODO: should readiness be defined by Job or Tool object?
             self.ready = True
-        
+
         except ParameterError, e:
             self.log.exception('%s' % e)
-            
+
     def validate_parameters(self):
-        
+
         missing = self.parameters.missing()
         if missing:
-            missing = ';'.join(['%s: %s' % (item.name, item.value) for item in missing])
-            self.logger.error('Following parameter values are missing: %s' % missing)
+            missing = ';'.join(['%s: %s' %
+                               (item.name, item.value) for item in missing])
+            self.logger.error('Following parameter values are missing: %s'
+                              % missing)
         else:
             self.ready = True
-    
+
     def _get_ready(self):
         return self._ready
-    
+
     def _set_ready(self, value):
         self._ready = bool(value)
-        
+
     ready = property(_get_ready, _set_ready, None, '')
 
 if __name__ == '__main__':
@@ -901,15 +908,17 @@ if __name__ == '__main__':
 #    except ImportError:
 #        pass
 
-#    executetool('MultiClipRaster', 'zupport.rastertools.multiclipraster', 'arcgis',
+#    executetool('MultiClipRaster', 'zupport.rastertools.multiclipraster',
+#                'arcgis',
 #               r"G:\Data\Metsakeskukset\Etela-Savo\VMI\MSNFI.gdb\Keskipituus;G:\Data\Metsakeskukset\Etela-Savo\VMI\MSNFI.gdb\Tilavuus_koivu",
 #               r"G:\Data\tmp\Scratch", "ERDAS IMAGINE",
-#               r"G:\Data\GRASS\ArcData\sample_area_N_es.shp", 
+#               r"G:\Data\GRASS\ArcData\sample_area_N_es.shp",
 #               None)
 
 #    fields = ["TILAVUUS"]
 #    for field in fields:
-#        executetool('MultiConvertRaster', 'zupport.rastertools.multiconvertraster', 
+#        executetool('MultiConvertRaster',
+#                    'zupport.rastertools.multiconvertraster',
 #				'arcgis',
 #				r'C:\Data\Staging\TemporaryStorage.gdb\FinlandYKJ\MK_puusto_ES',
 #				[{'IPUULAJI': ['all']}, {'IOSITE': ['all']}],
@@ -920,22 +929,25 @@ if __name__ == '__main__':
 #				r'C:\Data\Staging\Masks\MLVMI_maski_metsat.img',
 #				debug=True)
 
-#    executetool('CalculateRasterGroup', 'zupport.rastertools.calculaterastergroup', 
+#    executetool('CalculateRasterGroup',
+#                'zupport.rastertools.calculaterastergroup',
 #                'arcgis',
 #                r'C:\Data\Staging\Output\MK_puusto\index',
 #                r'C:\Data\Staging\Output\MK_puusto\index\groups',
 #                'SUM',
 #                '<BODY1>_<BODY2>_<BODY3>_<SUB1>_<ID1>',
 #                'BODY3')
-#    executetool('CalculateRasterGroup', 'zupport.rastertools.calculaterastergroup', 
+#    executetool('CalculateRasterGroup',
+#                'zupport.rastertools.calculaterastergroup',
 #                'arcgis',
 #                r'C:\Data\Staging\Output\LP_puusto\index',
 #                r'C:\Data\Staging\Output\LP_puusto\index\groups',
 #                'SUM',
 #                '<BODY1>_<BODY2>_<BODY3>_<SUB1>_<SUB2>_<ID1>',
 #                'BODY3')
-    
-#    executetool('CalculateRasterGroup', 'zupport.rastertools.calculaterastergroup', 
+#
+#    executetool('CalculateRasterGroup',
+#                'zupport.rastertools.calculaterastergroup',
 #                'arcgis',
 #                r'C:\Data\Staging\Output\MK_puusto\index\groups',
 #                r'C:\Data\Staging\Output\MK_puusto\index\final',
@@ -944,7 +956,8 @@ if __name__ == '__main__':
 #                'ID1')
 
 #
-#    executetool('CalculateRasterGroup', 'zupport.rastertools.calculaterastergroup', 
+#    executetool('CalculateRasterGroup',
+#                'zupport.rastertools.calculaterastergroup',
 #                'arcgis',
 #                r'C:\Data\Staging\Output\MK_puusto\index\groups',
 #                r'C:\Data\Staging\Output\MK_puusto\index\final',
@@ -964,11 +977,11 @@ if __name__ == '__main__':
 
     ex = ExtentContainer()
     ex.resolution = 500
-#    
+
 #    manager = Manager()
 #    manager.load_tool('Aggregate')
 #    if manager.is_loaded("Aggregate"):
-#        manager.executetool(toolname='Aggregate', 
+#        manager.executetool(toolname='Aggregate',
 #                            backend='arcgis',
 #                            input_workspace=r'H:\Data\SuperMetso\Rasterit\index\100',
 #                            output_workspace = r'H:\Data\SuperMetso\Rasterit\index',
@@ -1030,7 +1043,7 @@ if __name__ == '__main__':
 #              wildcard="*.img",
 #              template='<BODY1>_<ID1>_<BODY2>_<ID2>_<BODY3>',
 #              debug=True)
-#    
+#
 #    from zupport.utilities.dataframe import read_csv, ZCustom
 #    reffields = ("IPUULAJI", "LuokkaID")
 #    reftable_file =  r"C:\Data\Staging\parameters111130.csv"
@@ -1048,10 +1061,10 @@ if __name__ == '__main__':
 #              parameters,
 #              reffields,
 #              debug=True)
-    
+
 #    job = Job('crossselect',
 #              False,
-#              False, 
+#              False,
 #              reference_raster=r'C:\Data\Staging\Masks\MHMVMKIVMI_kp_maski.img',
 #              input_workspace=r'G:\Data\Metsakeskukset\Etela-Savo\Metsavara\MVScratch\index_group.gdb',
 #              output_workspace=r'G:\Data\Metsakeskukset\Etela-Savo\Metsavara\MVScratch\index_group_kp.gdb',
