@@ -1,0 +1,61 @@
+---
+RA_Sigmoidal:
+- name: 'raster1'
+  required: True
+  tip: 'First input raster'
+  value: ''
+                        
+- name: 'raster2'
+  required: True
+  tip: 'Second input raster'
+  value: ''
+                                      
+- name: 'output_raster'
+  required: True
+  tip: 'Output raster path'
+  value: ''
+                                      
+- name: 'raster_type'
+  required: True
+  tip: 'Raster type of the output raster'
+  value: ''
+                                      
+- name: 'asymptote'
+  required: True
+  tip: 'Value for asymptote that the sigmoidal approaches.'
+  value: 1.0
+                                      
+- name: 'xmid'
+  required: True
+  tip: 'Xmid if something else than the data median.'
+  value: 0.0
+  
+- name: 'lxmod'
+  required: True
+  tip: 'Modification value for the xmid (median) value (left).'
+  value: 0.0
+
+- name: 'rxmod'
+  required: True
+  tip: 'Modification value for the xmid (median) value (right).'
+  value: 0.0
+
+- name: 'lscale'
+  required: True
+  tip: 'Scaling factor for x values (left)'
+  value: 0.0
+  
+- name: 'rscale'
+  required: True
+  tip: 'Scaling factor for x values (right)'
+  value: 0.0
+  
+- name: 'debug'
+  required: True
+  tip: 'Determines whether debugging is enabled'
+  value: False
+  
+- name: 'help'
+  required: True
+  tip: 'Tool help'
+  value: 'FooBar'

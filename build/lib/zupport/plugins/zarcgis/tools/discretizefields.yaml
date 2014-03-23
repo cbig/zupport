@@ -1,0 +1,46 @@
+---
+DiscretizeFields:                   
+- name: 'intable'
+  required: True
+  tip: 'String representing source table holding the necessary fields'
+  value: ''
+
+- name: 'intable_discrete_field'
+  required: True
+  tip: 'String field name indication the field that discretization is based on'
+  value: ''
+
+- name: 'intable_join_field'
+  required: True
+  tip: 'String field for which the join is based in the input table'
+  value: ''
+
+- name: 'infeature'
+  required: True
+  tip: 'Path to input geometry table'
+  value: 'PATH'
+
+- name: 'infeature_join_field'
+  required: True
+  tip: 'String field for which the join is based in the input feature class'
+  value: ''
+
+- name: 'joint_type'
+  required: False
+  tip: 'String field defining which type of join is used [KEEP_ALL, KEEP_COMMON]'
+  value: ''
+
+- name: 'output_feature'
+  required: True
+  tip: 'Path to output feature class'
+  value: 'PATH'
+  
+- name: 'debug'
+  required: True
+  tip: 'Determines whether debugging is enabled'
+  value: False
+  
+- name: 'help'
+  required: True
+  tip: 'Tool help'
+  value: 'Foo'

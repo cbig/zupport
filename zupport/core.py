@@ -860,7 +860,7 @@ class Tool(object):
         """
         try:
             # Parameter values provided as args, check that they comply
-            # to Parameters object (self.parameters) structure. 
+            # to Parameters object (self.parameters) structure.
             # Parameter identity is defined by arg index, so it's
             # only implicit.
             if len(self.parameters) < len(args):
@@ -1027,11 +1027,11 @@ if __name__ == '__main__':
     job = Job('rasigmoidal',
               False,
               False,
-              raster1=r'H:\Data\Metsakeskukset\Keski-Suomi\ositteet_test\OSITE_NO_2_PUULAJI_13_J_KESKILPM.img',
-              raster2=r'H:\Data\Metsakeskukset\Keski-Suomi\ositteet_test\OSITE_NO_2_PUULAJI_13_KOK_TIL.img',
-              output_raster=r'H:\Data\Metsakeskukset\Keski-Suomi\index_KES.gdb\testPUULAJI_13_OSITE_2_index',
-              raster_type='ERDAS IMAGINE',
-              asymptote=1.2,
+              raster1=r'C:\GitHub\zsetup-esmk\data\msnfi\segments\sub\segment_2_kuusi_1_avdia.tif',
+              raster2=r'C:\GitHub\zsetup-esmk\data\msnfi\segments\sub\segment_2_kuusi_1_vol.tif',
+              output_raster=r'C:\GitHub\zsetup-esmk\data\msnfi\indices.gdb\segment_kuusi_index',
+              raster_type='GeoTIFF',
+              asymptote=1.0,
               xmid=19,
               lxmod=0.22,
               rxmod=0.18,

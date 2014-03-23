@@ -1,0 +1,51 @@
+---
+MultiConvertRaster:
+- name: 'input_feature'
+  required: True
+  tip: 'String representing source feature class'
+  value: ''
+                                      
+- name: 'input_condition_fields'
+  required: True
+  tip: 'List of {field_name: [values]} defining which fields and values will be used for conversion conditions'
+  value: !!seq [!!map {'': ''}]
+
+- name: 'output_value_field'
+  required: True
+  tip: 'String field for value of the output raster'
+  value: ''
+
+- name: 'output_workspace'
+  required: True
+  tip: 'Path to output workspace'
+  value: ''
+           
+- name: 'pixel_size'
+  required: True
+  tip: 'Output resolution'
+  value: 0
+                                      
+- name: 'raster_type'
+  required: False
+  tip: ''
+  value: ''
+
+- name: 'extent'
+  required: False
+  tip: 'String defining a feature class or raster which extent will be used'
+  value: ''
+  
+- name: 'snap_raster'
+  required: False
+  tip: 'String defining a raster to which result will be snapped'
+  value: ''
+  
+- name: 'debug'
+  required: True
+  tip: 'Determines whether debugging is enabled'
+  value: False
+  
+- name: 'help'
+  required: True
+  tip: 'Tool help'
+  value: 'Tool for converting feature layers to rasters based on multiple attribute selections.'

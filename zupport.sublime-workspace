@@ -1,0 +1,317 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"command_palette":
+	{
+		"height": 338.0,
+		"selected_items":
+		[
+			[
+				"git SS",
+				"Git: Status"
+			],
+			[
+				"git",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add Current File"
+			],
+			[
+				"git lo",
+				"Git: Log Current File"
+			],
+			[
+				"git ",
+				"Git: Commit"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 368.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/GitHub/esmk/data/msnfi/indices/index_msnfi_birch_3.tfw",
+		"/C/GitHub/zsetup-esmk/questions.md",
+		"/C/GitHub/zsetup-esmk/README.md",
+		"/C/GitHub/zsetup-esmk/.git/index",
+		"/C/GitHub/zsetup-esmk/.git/config",
+		"/C/GitHub/zsetup-esmk/zsetup/1_abf/1_abf.spp",
+		"/C/GitHub/zsetup-esmk/data/msnfi/indices.gdb/timestamps",
+		"/C/GitHub/zsetup-esmk/data/msnfi/indices.gdb/a00000001.TablesByName.atx",
+		"/C/GitHub/zsetup-esmk/zsetup/tee_mh_wrscr_60.bat",
+		"/C/GitHub/zsetup-esmk/zsetup/4_abf_pe_w_cmat.bat",
+		"/C/GitHub/zsetup-esmk/zsetup/6_abf_pe_w_cmat_cmete_cres.bat",
+		"/C/GitHub/zsetup-esmk/zsetup/5_abf_pe_w_cmat_cmete.bat",
+		"/C/GitHub/zsetup-esmk/.gitignore",
+		"/H/Data/Metsakeskukset/Etela-Savo/Kasvupaikka/R/raster_tricks.R",
+		"/C/GitHub/zsetup-esmk/zsetup/2_abf_pe.bat",
+		"/C/GitHub/zsetup-esmk/zsetup/7_abf_pe_w_cmat_cmete_cres_mask.bat",
+		"/C/GitHub/zsetup-esmk/zsetup/3_abf_pe_w.bat",
+		"/C/GitHub/zsetup-esmk/zsetup/1_abf.bat",
+		"/C/GitHub/zsetup-esmk/zsetup/4_abf_pe_w_cmat/4_abf_pe_w_cmat.dat",
+		"/C/GitHub/zsetup-esmk/zsetup/3_abf_pe_w/3_abf_pe_w.dat",
+		"/C/GitHub/zsetup-esmk/zsetup/2_abf_pe/2_abf_pe.dat",
+		"/C/GitHub/zsetup-esmk/zsetup/1_abf/1_abf.dat",
+		"/C/GitHub/zsetup-esmk/zsetup/5_abf_pe_w_cmat_cmete/5_abf_pe_w_cmat_cmete.dat",
+		"/C/GitHub/zsetup-esmk/zsetup/6_abf_pe_w_cmat_cmete_cres/6_abf_pe_w_cmat_cmete_cres.dat",
+		"/C/GitHub/zsetup-esmk/zsetup/7_abf_pe_w_cmat_cmete_cres_mask/7_abf_pe_w_cmat_cmete_cres_mask.dat",
+		"/C/GitHub/zsetup-esmk/zsetup/condition_layers.txt",
+		"/C/GitHub/zsetup-esmk/zsetup/2_abf_pe/2_abf_pe.spp",
+		"/C/GitHub/zsetup-esmk/zsetup/3_abf_pe_w/3_abf_pe_w.spp",
+		"/C/GitHub/zsetup-esmk/zsetup/4_abf_pe_w_cmat/4_abf_pe_w_cmat.spp",
+		"/C/GitHub/zsetup-esmk/zsetup/5_abf_pe_w_cmat_cmete/5_abf_pe_w_cmat_cmete.spp",
+		"/C/GitHub/zsetup-esmk/zsetup/6_abf_pe_w_cmat_cmete_cres/6_abf_pe_w_cmat_cmete_cres.spp",
+		"/C/GitHub/zsetup-esmk/zsetup/7_abf_pe_w_cmat_cmete_cres_mask/7_abf_pe_w_cmat_cmete_cres_mask.spp",
+		"/C/GitHub/zupport/thirdparty/toolboxes/scripts/tb_batch_rasigmoidal.py",
+		"/C/GitHub/zupport/zupport/plugins/zarcgis/tools/rasigmoidal.py",
+		"/C/GitHub/zupport/zupport/utilities/utilities.py",
+		"/C/GitHub/zupport/zupport/core.py",
+		"/H/Data/Metsakeskukset/Etela-Savo/Zonation/Results/110220/README",
+		"/C/GitHub/zsetup-esmk/preprocessing/data/parameters-esmk.csv",
+		"/C/temp/test.py",
+		"/C/Users/admin_jlehtoma/AppData/Roaming/Sublime Text 3/Packages/User/Git.sublime-settings",
+		"/C/Users/admin_jlehtoma/AppData/Roaming/Sublime Text 3/Packages/User/GitGutter.sublime-settings",
+		"/C/Users/admin_jlehtoma/AppData/Roaming/Sublime Text 3/Packages/GitGutter/GitGutter.sublime-settings",
+		"/C/Users/admin_jlehtoma/AppData/Roaming/Sublime Text 3/Packages/Git/Git.sublime-settings",
+		"/C/GitHub/zupport/thirdparty/toolboxes/scripts/tb_batch_aggregate.py",
+		"/C/GitHub/zupport/thirdparty/toolboxes/scripts/tb_multiconvertraster.py",
+		"/C/GitHub/zupport/thirdparty/toolboxes/scripts/tb_exists.py",
+		"/C/GitHub/zupport/thirdparty/toolboxes/scripts/tb_discretizefields.py",
+		"/C/GitHub/zupport/thirdparty/toolboxes/scripts/tb_crossselect.py",
+		"/C/GitHub/zupport/thirdparty/toolboxes/scripts/tb_calculaterastergroup.py",
+		"/C/GitHub/zupport/thirdparty/toolboxes/scripts/tb_aggregate.py",
+		"/C/GitHub/zupport/TODO.md",
+		"/C/GitHub/zupport/zupport/resources/ui_toolloader.py",
+		"/C/Users/admin_jlehtoma/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/admin_jlehtoma/AppData/Roaming/Sublime Text 3/Packages/SublimePythonIDE/SublimePython.sublime-settings",
+		"/C/GitHub/suoz/Zproject/42_abf_wgt_cnd_cmt_int_hms/42_abf_wgt_cnd_cmt_int_hms.dat",
+		"/C/GitHub/zsetup-esmk/preprocessing/python/sigmoidal.py",
+		"/C/GitHub/zsetup-esmk/preprocessing/data/parameters-esmk2.csv",
+		"/C/GitHub/zupport/zupport/utilities/dataframe.py",
+		"/C/Python27/ArcGIS10.2/Lib/site-packages/easy-install.pth",
+		"/C/GitHub/zupport/zupport/zlogging.py",
+		"/C/GitHub/zupport/INSTALL.md",
+		"/C/GitHub/suoz/README.md",
+		"/C/GitHub/suoz/Zproject/README.md",
+		"/C/GitHub/suoz/Zproject/42_abf_wgt_cnd_cmt_int_hms/42_abf_wgt_cnd_cmt_int_hms.spp",
+		"/G/Portable/Data/UMLZ.qgs",
+		"/G/Portable/Data/zonation_spectral.qml",
+		"/G/Data/Projects/SuperMetso/Original/Zonat/sm_local.spp",
+		"/G/Data/Projects/SuperMetso/Original/Zonat/sm_neginter.spp",
+		"/C/Data/Supermetso/supermetso-fi/SM_01_loc/SM_01_loc.spp",
+		"/C/Data/Supermetso/supermetso-fi/README.md",
+		"/G/Data/Projects/SuperMetso/Original/Zonat/supermetso_2km.bat",
+		"/G/Data/Projects/SuperMetso/Original/Zonat/supermetso_2km.dat",
+		"/C/Users/admin_jlehtoma/Desktop/test.zgradient"
+	],
+	"find":
+	{
+		"height": 33.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"birch",
+			"spruce",
+			"pine",
+			"composite",
+			"manty",
+			"mlp",
+			"kuusi",
+			"_kp",
+			"_60",
+			"koivu",
+			"data/60",
+			"pine",
+			"spruce",
+			"birch",
+			"KOIVU",
+			"20_60_5kp_abf_pe_w_cmat_cmete_cres_mask",
+			"19_60_5kp_abf_pe_w_cmat_cmete_cres",
+			"18_60_5kp_abf_pe_w_cmat_cmete",
+			"17_60_5kp_abf_pe_w_cmat",
+			"\\",
+			"16_60_5kp_abf_pe_w",
+			"15_60_5kp_abf_pe",
+			"14_60_5kp_abf",
+			"raster_type",
+			";",
+			"/rasteri_100"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"odecid",
+			"birch",
+			"spruce",
+			"data/composite",
+			"pine",
+			"odecid",
+			"spruce",
+			"",
+			"birch",
+			"composite",
+			"odecid",
+			"pine",
+			"spruce",
+			"7_abf_pe_w_cmat_cmete_cres_mask",
+			"6_abf_pe_w_cmat_cmete_cres",
+			"5_abf_pe_w_cmat_cmete",
+			"4_abf_pe_w_cmat",
+			"/",
+			"3_abf_pe_w",
+			"2_abf_pe",
+			"1_abf",
+			",",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 150.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 98.0
+	},
+	"project": "zupport.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"utili",
+				"zupport\\utilities\\utilities.py"
+			],
+			[
+				"tb_",
+				"thirdparty\\toolboxes\\scripts\\tb_batch_rasigmoidal.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 250.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

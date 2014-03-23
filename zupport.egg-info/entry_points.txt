@@ -1,0 +1,6 @@
+[console_scripts]
+zupport = zupport.cli:main
+
+[gui_scripts]
+zupport_gui = zupport.gui:main
+

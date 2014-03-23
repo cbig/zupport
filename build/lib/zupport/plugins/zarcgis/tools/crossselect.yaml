@@ -1,0 +1,48 @@
+---
+CrossSelect:
+
+- name: 'reference_raster'
+  required: True
+  tip: 'Reference raster for selection'
+  value: ''
+  
+- name: 'input_workspace'
+  required: True
+  tip: 'Input workspace holding the rasters'
+  value: ''
+                                      
+- name: 'output_workspace'
+  required: True
+  tip: 'Output workspace holding for the results'
+  value: ''
+
+- name: 'include'
+  required: False
+  tip: 'List of reference raster values to be used (instead of using all)'
+  value: !!seq []
+
+- name: 'exclude'
+  required: False
+  tip: 'List of reference raster values to be excluded'
+  value: !!seq []
+
+- name: 'raster_format'
+  required: True
+  tip: 'Raster format for the output rasters'
+  value: 'ERDAS IMAGINE'
+  
+- name: 'raster_name_tag'
+  required: False
+  tip: 'String to tag the the output names'
+  value: ''
+  
+- name: 'debug'
+  required: True
+  tip: 'Determines whether debugging is enabled'
+  value: True
+  
+- name: 'help'
+  required: True
+  tip: 'Tool help'
+  value: 'Tool for batch selecting pixels from rasters in workspace based on a single raster. Tool works on a set of rasters in a workspace and uses a reference rasters unique values to select pixels from target rasters. For example, if reference raster would represent land use classes [1, 2, 3] and rasters A and B would have continuous values ArcCrossSelect would create 6 new rasters; 1 per land use class per value raster.'
+  

@@ -51,7 +51,7 @@ class access2000(csv.Dialect):
     skipinitialspace = True
     
 class ZCustom(csv.Dialect):
-    delimiter = ';'
+    delimiter = ','
     quotechar = '"'
     doublequote = True  
     quoting = csv.QUOTE_NONNUMERIC

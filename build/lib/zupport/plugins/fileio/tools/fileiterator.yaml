@@ -1,0 +1,22 @@
+---
+Fileiterator:
+- name: 'input_workspace'
+  required: True
+  tip: 'Path to input workspace'
+  value: 'PATH'
+                                      
+- name: 'wildcard'
+  required: False
+  tip: 'File type wildcard'
+  value: ''
+                                     
+- name: 'debug'
+  required: True
+  tip: 'Determines whether debugging is enabled'
+  value: True
+  
+- name: 'help'
+  required: True
+  tip: 'Tool help'
+  value: 'Lists all files in the input workspace filtered with a wildcard.'
+  

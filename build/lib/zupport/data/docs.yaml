@@ -1,0 +1,45 @@
+---
+fields:
+  - name
+  - administrator
+  - updated
+  - publicity
+  - plannedusage
+  - characteristics
+  - analysisusage
+  - description
+  - meta_creator
+  - meta_modified
+...
+---
+name: Arvokkaat kallioalueet
+administrator: SYKE
+updated: !!timestamp "2009-12-01T16:00:00"
+publicity: julkinen
+plannedusage: >
+ Paatoksenteon tukena maa-aineislain ja rakennuslain mukaisia ratkaisuja
+ tehtaessa
+characteristics: Ei juridista asemaa
+analysisusage: arvoa kuvaava ja/tai rakennepiirteita sisaltava
+description: >
+ Aineistolla on keskeinen merkityksensa myos maankayton suunnittelussa,
+ mutta silla ei ole kuitenkaan juridista asemaa.
+meta_creator: Joona
+meta_modified: !!timestamp "2009-12-01T16:00:00"
+...
+---
+name: Arvokkaat perinnebiotoopit
+administrator: ESA
+updated: !!timestamp "2008-11-01T16:00:00"
+publicity: julkinen
+plannedusage: >
+ Paatoksenteon tukena maa-aineislain ja rakennuslain mukaisia ratkaisuja
+ tehtaessa
+characteristics: Ei rajoitteita
+analysisusage: Todennettua arvoa kuvaava
+description: >
+ Aineistolla on keskeinen merkityksensa myos maankayton suunnittelussa,
+ mutta silla ei ole kuitenkaan juridista asemaa.
+meta_creator: Joona
+meta_modified: !!timestamp "2009-12-01T16:00:00"
+...

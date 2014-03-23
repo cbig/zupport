@@ -1,0 +1,11 @@
+<RCC>
+  <qresource>
+    <file>icons/kfind.svg</file>
+    <file>icons/control-center2.svg</file>
+    <file>icons/help-contents.svg</file>
+    <file>icons/system-shutdown.svg</file>
+    <file>icons/gtk-info.svg</file>
+    <file>icons/application-exit.svg</file>
+    <file>icons/document-open.svg</file>
+  </qresource>
+</RCC>

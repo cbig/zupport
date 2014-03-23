@@ -264,13 +264,13 @@ class RASigmoidal(ArcTool):
                                                            asym=asym,
                                                            xmid=(xmid +  lxmod),
                                                            scale = lscale),
-                                                   self.sigmoidal(ma_array1, 
+                                                   self.sigmoidal(ma_array1,
                                                            xmid=(xmid + rxmod),
                                                            scale = rscale))
-                
+
                         #self.log.debug('Masked trans array max: %s' % ma_trans_array1.max())
                         #self.log.debug('Masked array (vol) max: %s' % ma_array2.max())
-                        
+    
                         self.log.debug('Multiplying transformed array with array 2')
 
                         ma_index_array = ma_trans_array1 * ma_array2
